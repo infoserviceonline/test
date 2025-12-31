@@ -1,0 +1,1398 @@
+        public static void TestLabOK()
+        {
+            string cNomeFile = Leo.cPathXml + "cdalab.xml";
+            ArrayList aElement = new ArrayList();
+
+            XNamespace ns = "urn:hl7-org:v3";
+            XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
+            XNamespace lab = "urn:oid:1.3.6.1.4.1.19376.1.3.2";
+            XNamespace mif = "urn:hl7-org:v3/mif";
+            XNamespace sdtc = "urn:hl7-org:sdtc";
+
+            XDocument oXml = new XDocument();
+
+            XElement oRoot = new XElement(ns + "ClinicalDocument",
+                new XAttribute(XNamespace.Xmlns + "xsi", xsi.NamespaceName),
+                new XAttribute(XNamespace.Xmlns + "lab", lab.NamespaceName),
+                new XAttribute(XNamespace.Xmlns + "mif", mif.NamespaceName),
+                new XAttribute(XNamespace.Xmlns + "sdtc", sdtc.NamespaceName)
+                );
+
+
+            oXml.Add(oRoot);
+
+            XElement oElement = new XElement(ns + "realmCode", new XAttribute("code", "IT"));
+            aElement.Add(oElement);
+            //////////////////////////////////////////////////////////////////////////////////
+
+            oElement = new XElement(ns + "typeId",
+                                           new XAttribute("root", "2.16.840.1.113883.1.3"),
+                                           new XAttribute("extension", "POCD_MT000040UV02")
+                                           );
+
+            aElement.Add(oElement);
+            ///////////////////////////////////////////////////////////////////////////////
+            oElement = new XElement(ns + "templateId",
+                                           new XAttribute("root", "2.16.840.1.113883.2.9.10.1.1"),
+                                           new XAttribute("extension", "1.3")
+                                           );
+
+            aElement.Add(oElement);
+            ///////////////////////////////////////////////////////////////////////////////
+            oElement = new XElement(ns + "id",
+                                           new XAttribute("root", "2.16.840.1.113883.2.9.2.120.4.4"),
+                                           new XAttribute("extension", "030702.TSTSMN63A01F205H.20220325112426.OQlvTq1J"),
+                                           new XAttribute("assigningAuthorityName", "Regione Lazio")
+                                           );
+
+            aElement.Add(oElement);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            oElement = new XElement(ns + "code",
+                                           new XAttribute("code", "11502-2"),
+                                           new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+                                           new XAttribute("codeSystemName", "LOINC"),
+                                           new XAttribute("displayName", "Referto di laboratorio")
+                                           );
+
+            aElement.Add(oElement);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            oElement = new XElement(ns + "title", "Referto di laboratorio");
+            aElement.Add(oElement);
+            /*
+            ///////////////////////////////////////////////////////////////////////////////
+            oElement = new XElement(sdtc + "statusCode",
+                                           new XAttribute("code", "active"));
+
+            aElement.Add(oElement);
+            */
+            ///////////////////////////////////////////////////////////////////////////////
+            oElement = new XElement(ns + "effectiveTime",
+                                           new XAttribute("value", "20220330112426+0100"));
+
+            aElement.Add(oElement);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            oElement = new XElement(ns + "confidentialityCode",
+                                           new XAttribute("code", "N"),
+                                           new XAttribute("codeSystem", "2.16.840.1.113883.5.25"),
+                                           new XAttribute("codeSystemName", "Confidentiality"),
+                                           new XAttribute("displayName", "Normal")
+                                           );
+
+            aElement.Add(oElement);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            oElement = new XElement(ns + "languageCode", new XAttribute("code", "it-IT"));
+
+            aElement.Add(oElement);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            oElement = new XElement(ns + "setId",
+                                           new XAttribute("root", "2.16.840.1.113883.2.9.2.120.4.4"),
+                                           new XAttribute("extension", "030702.TSTSMN63A01F205H.20220325112426.OQlvTq1J"),
+                                           new XAttribute("assigningAuthorityName", "Regione Lazio")
+                                           );
+
+            aElement.Add(oElement);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            oElement = new XElement(ns + "versionNumber", new XAttribute("value", "1"));
+
+            aElement.Add(oElement);
+
+            //////////RECORD TARGET ANNIDATO
+            oElement = new XElement(ns + "recordTarget",
+                                           new XAttribute("typeCode", "RCT"),
+                                           new XAttribute("contextControlCode", "OP")
+                                           );
+
+            XElement oPatientRole = new XElement(ns + "patientRole", new XAttribute("classCode", "PAT"));
+
+            XElement oPatientRoleID = new XElement(ns + "id",
+                                           new XAttribute("root", "2.16.840.1.113883.2.9.4.3.2"),
+                                           new XAttribute("extension", "GTWGWY82B42G920M"),
+                                           new XAttribute("assigningAuthorityName", "MEF")
+                                           );
+
+            oPatientRole.Add(oPatientRoleID);
+
+            //////////////ADDRESS1////////////////////////////////////////////
+            XElement oPatientRoleAddr1 = new XElement(ns + "addr", new XAttribute("use", "HP"));
+
+            XElement oPatientRoleAddrStreetAddressLine = new XElement(ns + "streetAddressLine", "Via delle rose, 44");
+            oPatientRoleAddr1.Add(oPatientRoleAddrStreetAddressLine);
+
+            XElement oPatientRoleAddrCity = new XElement(ns + "city", "PIZZO");
+            oPatientRoleAddr1.Add(oPatientRoleAddrCity);
+
+            XElement oPatientRoleAddrCountry = new XElement(ns + "country", "100");
+            oPatientRoleAddr1.Add(oPatientRoleAddrCountry);
+
+            oPatientRole.Add(oPatientRoleAddr1);
+            //////////////FINE ADDRESS1////////////////////////////////////////////
+
+            XElement oPatientRoleTelecom1 = new XElement(ns + "telecom",
+                                            new XAttribute("use", "HP"),
+                                            new XAttribute("value", "tel:044555666")
+                                            );
+
+            oPatientRole.Add(oPatientRoleTelecom1);
+
+            /////PATIENT////////////////////////////////////////////////////////////////////////////////////
+
+            XElement oPatient = new XElement(ns + "patient", "");
+            XElement oPatientName = new XElement(ns + "name", "");
+
+            XElement oPatientNameFamily = new XElement(ns + "family", "Test");
+            oPatientName.Add(oPatientNameFamily);
+
+            XElement oPatientNameGiven = new XElement(ns + "given", "Giuseppe");
+            oPatientName.Add(oPatientNameGiven);
+
+            XElement oPatientNamePrefix = new XElement(ns + "prefix", "paziente");
+            oPatientName.Add(oPatientNamePrefix);
+
+            oPatient.Add(oPatientName);
+
+            XElement oPatientGenderCode = new XElement(ns + "administrativeGenderCode",
+                                            new XAttribute("code", "F"),
+                                            new XAttribute("codeSystem", "2.16.840.1.113883.5.1"),
+                                            new XAttribute("codeSystemName", "HL7 AdministrativeGender"),
+                                            new XAttribute("displayName", "Femmina")
+                                            );
+
+            oPatient.Add(oPatientGenderCode);
+
+            XElement oPatientBirthTime = new XElement(ns + "birthTime",
+                                            new XAttribute("value", "19640101")
+                                            );
+
+            oPatient.Add(oPatientBirthTime);
+
+            oPatientRole.Add(oPatient);
+
+            ////////////////////////FINE PAZIENTE/////////////////////////////////////////////
+
+            oElement.Add(oPatientRole);
+            aElement.Add(oElement);
+
+            //////////////////////FINE PATIENT ROLE
+            //////////////////////FINE RECORD TARGET ANNIDATO////////////////////////////////////////
+
+            ///////////////INIZIO AUTHOR////////////////////////////////////
+            XElement oAuthor = new XElement(ns + "author", "");
+
+            XElement oAuthorTime = new XElement(ns + "time", new XAttribute("value", "20220325110000+0100"));
+            oAuthor.Add(oAuthorTime);
+
+            XElement oAuthorAssignedAuthor = new XElement(ns + "assignedAuthor", new XAttribute("classCode", "ASSIGNED"));
+
+            XElement oAuthorAssignedAuthorID = new XElement(ns + "id",
+                                new XAttribute("root", "2.16.840.1.113883.2.9.4.3.2"),
+                                new XAttribute("extension", "PROVAX00X00X000Y"),
+                                new XAttribute("assigningAuthorityName", "MEF")
+                                );
+
+            oAuthorAssignedAuthor.Add(oAuthorAssignedAuthorID);
+
+            XElement oAuthorTelecom = new XElement(ns + "telecom",
+                                new XAttribute("use", "WP"),
+                                new XAttribute("value", "mailto:prova.provax@example.com")
+                                );
+
+
+            oAuthorAssignedAuthor.Add(oAuthorTelecom);
+
+            XElement oAuthorAssignedPerson = new XElement(ns + "assignedPerson", "");
+            XElement oAuthorAssignedPersonName = new XElement(ns + "name", "");
+
+            XElement oAuthorAssignedPersonNameFamily = new XElement(ns + "family", "Test");
+            oAuthorAssignedPersonName.Add(oAuthorAssignedPersonNameFamily);
+            XElement oAuthorAssignedPersonNameGiven = new XElement(ns + "given", "Matteo");
+            oAuthorAssignedPersonName.Add(oAuthorAssignedPersonNameGiven);
+            XElement oAuthorAssignedPersonNamePrefix = new XElement(ns + "prefix", "Dr");
+            oAuthorAssignedPersonName.Add(oAuthorAssignedPersonNamePrefix);
+
+            oAuthorAssignedPerson.Add(oAuthorAssignedPersonName);
+            oAuthorAssignedAuthor.Add(oAuthorAssignedPerson);
+            oAuthor.Add(oAuthorAssignedAuthor);
+
+            aElement.Add(oAuthor);
+
+            /////////////////////////////////FINE AUTHOR///////////////////////////////////
+
+            //////////////////custodian///////////////////////////////////////////////
+            XElement oCustodian = new XElement(ns + "custodian", "");
+            XElement oAssignedCustodian = new XElement(ns + "assignedCustodian", "");
+            oCustodian.Add(oAssignedCustodian);
+            XElement oRepresentedCustodianOrganization = new XElement(ns + "representedCustodianOrganization", "");
+            oAssignedCustodian.Add(oRepresentedCustodianOrganization);
+            XElement oRepresentedCustodianOrganizationID = new XElement(ns + "id",
+                                                    new XAttribute("root", "2.16.840.1.113883.2.9.4.1.2"),
+                                                    new XAttribute("extension", "120148"),
+                                                    new XAttribute("assigningAuthorityName", "Ministero della Salute")
+                                                    );
+            oRepresentedCustodianOrganization.Add(oRepresentedCustodianOrganizationID);
+            XElement oRepresentedCustodianOrganizationName = new XElement(ns + "name", "SAN RAFFAELE NOMENTANA");
+            oRepresentedCustodianOrganization.Add(oRepresentedCustodianOrganizationName);
+            XElement oRepresentedCustodianOrganizationTelecom = new XElement(ns + "telecom",
+                                                    new XAttribute("use", "WP"),
+                                                    new XAttribute("value", "tel:3340000000")
+                                                    );
+            oRepresentedCustodianOrganization.Add(oRepresentedCustodianOrganizationTelecom);
+
+            XElement oRepresentedCustodianOrganizationAddr = new XElement(ns + "addr",
+                                                             new XAttribute("use", "WP"));
+
+            XElement oRepresentedCustodianOrganizationAddrStreetAddressLine = new XElement(ns + "streetAddressLine", "Via Emilio Praga 39");
+            oRepresentedCustodianOrganizationAddr.Add(oRepresentedCustodianOrganizationAddrStreetAddressLine);
+
+            XElement oRepresentedCustodianOrganizationAddrCity = new XElement(ns + "city", "Roma");
+            oRepresentedCustodianOrganizationAddr.Add(oRepresentedCustodianOrganizationAddrCity);
+
+            XElement oRepresentedCustodianOrganizationAddrPostalCode = new XElement(ns + "postalCode", "00137");
+            oRepresentedCustodianOrganizationAddr.Add(oRepresentedCustodianOrganizationAddrPostalCode);
+
+            XElement oRepresentedCustodianOrganizationAddrCountry = new XElement(ns + "country", "100");
+            oRepresentedCustodianOrganizationAddr.Add(oRepresentedCustodianOrganizationAddrCountry);
+
+            oRepresentedCustodianOrganization.Add(oRepresentedCustodianOrganizationAddr);
+
+            aElement.Add(oCustodian);
+
+            //////////////////FINE custodian///////////////////////////////////////////////
+
+            /////////////////////////legalAuthenticator////////////////////////
+            XElement oLegalAuthenticator = new XElement(ns + "legalAuthenticator", "");
+            XElement oLegalAuthenticatorTime = new XElement(ns + "time",
+                                        new XAttribute("value", "20220325110000+0100")
+                                        );
+            oLegalAuthenticator.Add(oLegalAuthenticatorTime);
+
+            XElement oLegalAuthenticatorSignatureCode = new XElement(ns + "signatureCode",
+                                        new XAttribute("code", "S"));
+            oLegalAuthenticator.Add(oLegalAuthenticatorSignatureCode);
+
+            XElement oLegalAuthenticatorAssignedEntity = new XElement(ns + "assignedEntity", "",
+                                                         new XAttribute("classCode", "ASSIGNED")
+                                                         );
+
+            oLegalAuthenticator.Add(oLegalAuthenticatorAssignedEntity);
+
+            XElement oLegalAuthenticatorAssignedEntityID = new XElement(ns + "id",
+                            new XAttribute("root", "2.16.840.1.113883.2.9.4.3.2"),
+                            new XAttribute("extension", "PROVAX00X00X000Y"),
+                            new XAttribute("assigningAuthorityName", "MEF")
+                            );
+            oLegalAuthenticatorAssignedEntity.Add(oLegalAuthenticatorAssignedEntityID);
+
+            XElement oLegalAuthenticatorAssignedEntityAssPerson = new XElement(ns + "assignedPerson");
+            XElement oLegalAuthenticatorAssignedEntityAssPersonName = new XElement(ns + "name");
+
+
+            XElement oLegalAuthenticatorAssignedEntityAssPersonNameFam = new XElement(ns + "family", "COGNOME");
+            XElement oLegalAuthenticatorAssignedEntityAssPersonNameGiv = new XElement(ns + "given", "NOME");
+            XElement oLegalAuthenticatorAssignedEntityAssPersonNamePref = new XElement(ns + "prefix", "DOTT.");
+
+            oLegalAuthenticatorAssignedEntityAssPersonName.Add(oLegalAuthenticatorAssignedEntityAssPersonNameFam);
+            oLegalAuthenticatorAssignedEntityAssPersonName.Add(oLegalAuthenticatorAssignedEntityAssPersonNameGiv);
+            oLegalAuthenticatorAssignedEntityAssPersonName.Add(oLegalAuthenticatorAssignedEntityAssPersonNamePref);
+
+            oLegalAuthenticatorAssignedEntityAssPerson.Add(oLegalAuthenticatorAssignedEntityAssPersonName);
+            oLegalAuthenticatorAssignedEntity.Add(oLegalAuthenticatorAssignedEntityAssPerson);
+            aElement.Add(oLegalAuthenticator);
+
+            /////////////////////////FINE legalAuthenticator////////////////////////
+
+            //////////////////inFulfillmentOf////////////////////////////////////
+
+            XElement oInFulfillmentOf = new XElement(ns + "inFulfillmentOf", "");
+
+            XElement oInFulfillmentOfOrder = new XElement(ns + "order", "");
+
+            XElement oInFulfillmentOfOrderID1 = new XElement(ns + "id",
+                              new XAttribute("root", "2.16.840.1.113883.2.9.4.3.8"),
+                              new XAttribute("extension", "1900A6758901234"),
+                              new XAttribute("assigningAuthorityName", "Ministero delle Finanze")
+                              );
+
+            XElement oInFulfillmentOfOrderID2 = new XElement(ns + "id",
+                              new XAttribute("root", "2.16.840.1.113883.2.9.4.3.8"),
+                              new XAttribute("extension", "1900A6758901345"),
+                              new XAttribute("assigningAuthorityName", "Ministero delle Finanze")
+                              );
+
+            XElement oInFulfillmentOfOrderID3 = new XElement(ns + "id",
+                              new XAttribute("root", "2.16.840.1.113883.2.9.4.3.8"),
+                              new XAttribute("extension", "1900A6758901478"),
+                              new XAttribute("assigningAuthorityName", "Ministero delle Finanze")
+                              );
+
+            XElement oInFulfillmentOfOrderPriorityCode = new XElement(ns + "priorityCode",
+                              new XAttribute("code", "R"),
+                              new XAttribute("codeSystem", "2.16.840.1.113883.5.7"),
+                              new XAttribute("codeSystemName", "HL7 ActPriority"),
+                              new XAttribute("displayName", "routine")
+                              );
+
+            oInFulfillmentOfOrder.Add(oInFulfillmentOfOrderID1);
+            oInFulfillmentOfOrder.Add(oInFulfillmentOfOrderID2);
+            oInFulfillmentOfOrder.Add(oInFulfillmentOfOrderID3);
+            oInFulfillmentOfOrder.Add(oInFulfillmentOfOrderPriorityCode);
+
+            oInFulfillmentOf.Add(oInFulfillmentOfOrder);
+
+            aElement.Add(oInFulfillmentOf);
+
+            //////////////////FINE inFulfillmentOf////////////////////////////////////
+
+            //////////////////////////////////////////INIZIO BODY ////////////////////////
+            XElement oComponent = new XElement(ns + "component", "");
+            XElement oComponentStructuredBody = new XElement(ns + "structuredBody", "",
+                                                new XAttribute("classCode", "DOCBODY"),
+                                                new XAttribute("moodCode", "EVN")
+                                                );
+
+            XElement oComponentStructuredBodyComponent = new XElement(ns + "component", "",
+                                                new XAttribute("typeCode", "COMP"));
+
+            XElement oComponentStructuredBodyComponentSection = new XElement(ns + "section", "",
+                                                new XAttribute("classCode", "DOCSECT"),
+                                                new XAttribute("moodCode", "EVN")
+                                                );
+
+            XElement oComponentStructuredBodyComponentSectionCode = new XElement(ns + "code",
+                            new XAttribute("code", "26436-6"),
+                            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+                            new XAttribute("codeSystemName", "LOINC"),
+                            new XAttribute("displayName", "Esami di Laboratorio")
+                            );
+
+            oComponentStructuredBodyComponentSection.Add(oComponentStructuredBodyComponentSectionCode);
+            XElement oComponentStructuredBodyComponentSectionTitle = new XElement(ns + "title", "Esami di Laboratorio");
+            oComponentStructuredBodyComponentSection.Add(oComponentStructuredBodyComponentSectionTitle);
+
+            //altro component
+            XElement oComponentStructuredBodyComponentSectionComponent = new XElement(ns + "component", "");
+            // altra section
+            XElement oComponentStructuredBodyComponentSectionComponentSection = new XElement(ns + "section", "",
+                                                                                new XAttribute("ID", "Sect-1"));
+
+            oComponentStructuredBodyComponentSectionComponent.Add(oComponentStructuredBodyComponentSectionComponentSection);
+
+            XElement oComponentStructuredBodyComponentSectionComponentSectionCode = new XElement(ns + "code",
+                            new XAttribute("code", "18725-2"),
+                            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+                            new XAttribute("codeSystemName", "LOINC"),
+                            new XAttribute("displayName", "Microbiology studies (set)")
+                            );
+
+            XElement oComponentStructuredBodyComponentSectionComponentSectionCodeTrans = new XElement(ns + "translation",
+                            new XAttribute("code", "MICR_05"),
+                            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.99"),
+                            new XAttribute("codeSystemName", "Codifica FLY"),
+                            new XAttribute("codeSystemVersion", "5.0"),
+                            new XAttribute("displayName", "MICROBIOLOGIA")
+                            );
+
+            oComponentStructuredBodyComponentSectionComponentSectionCode.Add(oComponentStructuredBodyComponentSectionComponentSectionCodeTrans);
+
+            oComponentStructuredBodyComponentSectionComponentSection.Add(oComponentStructuredBodyComponentSectionComponentSectionCode);
+            XElement oComponentStructuredBodyComponentSectionComponentSectionTitle = new XElement(ns + "title", "MICROBIOLOGIA");
+            oComponentStructuredBodyComponentSectionComponentSection.Add(oComponentStructuredBodyComponentSectionComponentSectionTitle);
+
+
+            //tabella
+            XElement oText = new XElement(ns + "text", "");
+            XElement oComponentStructuredBodyComponentSectionComponentSectionTextListItemTable = new XElement(ns + "table");
+            XElement oComponentStructuredBodyComponentSectionComponentSectionTextListItemTableThead = new XElement(ns + "thead", "");
+
+            XElement oComponentStructuredBodyComponentSectionComponentSectionTextListItemTableTheadTr1 = new XElement(ns + "tr", "");
+            XElement oComponentStructuredBodyComponentSectionComponentSectionTextListItemTableTheadTrTh = new XElement(ns + "th", "MICROBIOLOGIA");
+            oComponentStructuredBodyComponentSectionComponentSectionTextListItemTableTheadTr1.Add(oComponentStructuredBodyComponentSectionComponentSectionTextListItemTableTheadTrTh);
+
+            //primo tr di thead con l'intestazione
+            oComponentStructuredBodyComponentSectionComponentSectionTextListItemTableThead.Add(oComponentStructuredBodyComponentSectionComponentSectionTextListItemTableTheadTr1);
+
+            //tr con intestazioni colonne
+            XElement oTheadTr2 = new XElement(ns + "tr", "");
+            XElement oTh1 = new XElement(ns + "th", "Parametro");
+            XElement oTh2 = new XElement(ns + "th", "Risultati");
+            XElement oTh3 = new XElement(ns + "th", "Fn");
+            XElement oTh4 = new XElement(ns + "th", "Unità");
+            XElement oTh5 = new XElement(ns + "th", "Valori di riferimento");
+
+            oTheadTr2.Add(oTh1);
+            oTheadTr2.Add(oTh2);
+            oTheadTr2.Add(oTh3);
+            oTheadTr2.Add(oTh4);
+            oTheadTr2.Add(oTh5);
+
+            oComponentStructuredBodyComponentSectionComponentSectionTextListItemTableThead.Add(oTheadTr2);
+
+            oComponentStructuredBodyComponentSectionComponentSectionTextListItemTable.Add(oComponentStructuredBodyComponentSectionComponentSectionTextListItemTableThead);
+
+
+            ///////////////body
+
+            XElement oBody = new XElement(ns + "tbody", "");
+
+            ArrayList aValori = new ArrayList();
+            aValori.Add(new string[] { "ESAME COLTURALE DELL'ESPETTORATO", "POSITIVO", "", "", "" });
+            aValori.Add(new string[] { "Presenza di :", "alcuni leucociti", "", "", "" });
+            aValori.Add(new string[] { ".", "bacilli gram negativi", "", "", "" });
+            aValori.Add(new string[] { ".", "cocchi gram positivi", "", "", "" });
+            aValori.Add(new string[] { "Carica batterica", "100000", "", "UFC/ml", "" });
+            aValori.Add(new string[] { "Microrganismo patogeno isolato", "STAPHILOCOCCUS AUREUS", "", "", "" });
+            aValori.Add(new string[] { "ANTIBIOGRAMMA", "", "", "", "" });
+            aValori.Add(new string[] { "PENICILLINA G", "RESISTENTE", "", "", "" });
+            aValori.Add(new string[] { "PENICILLINA G MIC", ">= 0,5", "", "", "" });
+            aValori.Add(new string[] { "note:", "La MIC è espressa in mcg/ml", "", "", "" });
+
+
+            for (int x = 0; x < aValori.Count; x++)
+            {
+                //creo un tr per ogni valore
+                XElement oTr = new XElement(ns + "tr", "");
+                string[] aValore = (string[])aValori[x];
+                for (int y = 0; y < aValore.Length; y++)
+                {
+                    string cValore = aValore[y];
+                    oTr.Add(new XElement(ns + "td", cValore));
+                }
+                oBody.Add(oTr);
+            }
+
+            oComponentStructuredBodyComponentSectionComponentSectionTextListItemTable.Add(oBody);
+
+            oText.Add(oComponentStructuredBodyComponentSectionComponentSectionTextListItemTable);
+
+            oComponentStructuredBodyComponentSectionComponentSection.Add(oText);
+
+
+            ///////////entry////////////////////////////////////////////////////////////////
+
+            XElement oEntry1 = new XElement(ns + "entry", new XAttribute("typeCode", "DRIV"));
+
+
+            XElement oEntry1Act = new XElement(ns + "act",
+                                               new XAttribute("classCode", "ACT"),
+                                               new XAttribute("moodCode", "EVN")
+                                              );
+
+            //oEntry1.Add(oEntry1Act);
+
+            XElement oEntry1Code = new XElement(ns + "code",
+                new XAttribute("code", "622-1"),
+                new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+                new XAttribute("codeSystemName", "LOINC"),
+                new XAttribute("displayName", "Bacteria identified in Sputum by Aerobe culture")
+                );
+
+            XElement oTranslate1 = new XElement(ns + "translation",
+                new XAttribute("code", "90.93.3"),
+                new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+                new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+                new XAttribute("codeSystemVersion", "1.0"),
+                new XAttribute("displayName", "EC ESPETTORATO")
+                );
+
+            oEntry1Code.Add(oTranslate1);
+
+            oEntry1Act.Add(oEntry1Code);
+
+            XElement oEntry1ActStatusCode = new XElement(ns + "statusCode", new XAttribute("code", "completed"));
+
+            oEntry1Act.Add(oEntry1ActStatusCode);
+
+            XElement oEntry1ActEffeTime = new XElement(ns + "effectiveTime",
+                                             new XAttribute("value", "20220330112426+0100"));
+
+            oEntry1Act.Add(oEntry1ActEffeTime);
+
+
+            XElement oEntry1ActSpecimen = new XElement(ns + "specimen", new XAttribute("typeCode", "SPC"));
+
+            XElement oEntry1ActSpecimenRole = new XElement(ns + "specimenRole", new XAttribute("classCode", "SPEC"));
+
+            XElement oEntry1ActSpecimenRolePlayingEntity = new XElement(ns + "specimenPlayingEntity", "");
+
+            XElement oEntry1ActSpecimenRolePlayingEntityCode = new XElement(ns + "code",
+                                                new XAttribute("code", "SPT"),
+                                                new XAttribute("codeSystem", "2.16.840.1.113883.5.129"),
+                                                new XAttribute("codeSystemName", "SpecimenType"),
+                                                new XAttribute("displayName", "ESPETTORATO")
+                                                );
+
+            oEntry1ActSpecimenRolePlayingEntity.Add(oEntry1ActSpecimenRolePlayingEntityCode);
+            oEntry1ActSpecimenRole.Add(oEntry1ActSpecimenRolePlayingEntity);
+            oEntry1ActSpecimen.Add(oEntry1ActSpecimenRole);
+
+            oEntry1Act.Add(oEntry1ActSpecimen);
+            ///////////////////////////////////////////////fine specimen
+
+            ////////////////////////////entryRelationship/////////////////////////
+
+            XElement oRelationShip = new XElement(ns + "entryRelationship", new XAttribute("typeCode", "COMP"));
+
+            XElement oRelationShipOrganizer = new XElement(ns + "organizer",
+                                              new XAttribute("classCode", "BATTERY"),
+                                              new XAttribute("moodCode", "EVN")
+                                              );
+
+            XElement oRelationShipOrganizerCode = new XElement(ns + "code",
+                        new XAttribute("code", "622-1"),
+                        new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+                        new XAttribute("codeSystemName", "LOINC"),
+                        new XAttribute("displayName", "Bacteria identified in Sputum by Aerobe culture")
+                        );
+
+            XElement oRelationShipOrganizerCodeTranslate1 = new XElement(ns + "translation",
+                                                            new XAttribute("code", "90.93.3"),
+                                                            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+                                                            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+                                                            new XAttribute("codeSystemVersion", "1.0"),
+                                                            new XAttribute("displayName", "EC ESPETTORATO")
+                                                             );
+
+            oRelationShipOrganizerCode.Add(oRelationShipOrganizerCodeTranslate1);
+            oRelationShipOrganizer.Add(oRelationShipOrganizerCode);
+
+            XElement oRelationShipStatusCode = new XElement(ns + "statusCode", new XAttribute("code", "completed"));
+            oRelationShipOrganizer.Add(oRelationShipStatusCode);
+
+            XElement oRelationShipEffeTime = new XElement(ns + "effectiveTime",
+                                             new XAttribute("value", "20220330112426+0100"));
+
+            oRelationShipOrganizer.Add(oRelationShipEffeTime);
+
+
+
+            ////////////////////////component1////////////////////////////////////////
+            XElement oRelationShipComponent1 = new XElement(ns + "component", "");
+            XElement oRelationShipComponent1Obs = new XElement(ns + "observation",
+                                  new XAttribute("classCode", "OBS"),
+                                  new XAttribute("moodCode", "EVN")
+                                  );
+
+            XElement oRelationShipComponent1ObsCode = new XElement(ns + "code",
+            new XAttribute("code", "622-1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Bacteria identified in Sputum by Aerobe culture")
+            );
+
+            XElement oRelationShipComponent1ObsCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.93.3"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "EC ESPETTORATO")
+            );
+
+            oRelationShipComponent1ObsCode.Add(oRelationShipComponent1ObsCodeTranslate);
+            oRelationShipComponent1Obs.Add(oRelationShipComponent1ObsCode);
+
+            XElement oRelationShipComponent1ObsStatusCode = new XElement(ns + "statusCode",
+                                                            new XAttribute("code", "completed"));
+
+            oRelationShipComponent1Obs.Add(oRelationShipComponent1ObsStatusCode);
+
+            XElement oRelationShipComponent1ObsEffeTime = new XElement(ns + "effectiveTime",
+                                            new XAttribute("value", "20220330112426+0100"));
+
+            oRelationShipComponent1Obs.Add(oRelationShipComponent1ObsEffeTime);
+
+            //TESTO CON NAMESPACE
+            XElement oRelationShipComponent1ObsValue = new XElement(ns + "value",
+                                 new XAttribute(xsi + "type", "ST"), "POSITIVO");
+
+            oRelationShipComponent1Obs.Add(oRelationShipComponent1ObsValue);
+
+            XElement oRelationShipComponent1ObsMethodCode = new XElement(ns + "methodCode",
+                                                            new XAttribute("code", "0107"),
+                                                            new XAttribute("codeSystem", "2.16.840.1.113883.5.84"),
+                                                            new XAttribute("codeSystemName", "HL7 ObservationMethod"),
+                                                            new XAttribute("displayName", "MICROSCOPIA")
+                                                            );
+
+            oRelationShipComponent1Obs.Add(oRelationShipComponent1ObsMethodCode);
+
+            XElement oRelationShipComponent1ObsSpecimen = new XElement(ns + "specimen",
+                                                          new XAttribute("typeCode", "SPC"));
+
+            XElement oRelationShipComponent1ObsSpecimenRole = new XElement(ns + "specimenRole",
+                                                          new XAttribute("classCode", "SPEC"));
+
+            XElement oRelationShipComponent1ObsSpecimenRolePE = new XElement(ns + "specimenPlayingEntity", "");
+
+            XElement oRelationShipComponent1ObsSpecimenRolePECode = new XElement(ns + "code",
+                                                            new XAttribute("code", "SPT"),
+                                                            new XAttribute("codeSystem", "2.16.840.1.113883.5.129"),
+                                                            new XAttribute("codeSystemName", "SpecimenType"),
+                                                            new XAttribute("displayName", "ESPETTORATO")
+                                                            );
+
+            oRelationShipComponent1ObsSpecimenRolePE.Add(oRelationShipComponent1ObsSpecimenRolePECode);
+            oRelationShipComponent1ObsSpecimenRole.Add(oRelationShipComponent1ObsSpecimenRolePE);
+            oRelationShipComponent1ObsSpecimen.Add(oRelationShipComponent1ObsSpecimenRole);
+
+            oRelationShipComponent1Obs.Add(oRelationShipComponent1ObsSpecimen);
+
+            XElement oRelationShipComponent1ObsReferenceRange = new XElement(ns + "referenceRange",
+                                                                new XAttribute("typeCode", "REFV"));
+
+            XElement oRelationShipComponent1ObsReferenceRangeObsRange = new XElement(ns + "observationRange",
+                                                                        new XAttribute("classCode", "OBS"),
+                                                                        new XAttribute("moodCode", "EVN.CRT")
+                                                                        );
+
+            XElement oRelationShipComponent1ObsReferenceRangeObsRangeIntCode = new XElement(ns + "interpretationCode",
+            new XAttribute("code", "N"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.5.83"),
+            new XAttribute("codeSystemName", "ObservationInterpretation"),
+            new XAttribute("displayName", "N"));
+
+            oRelationShipComponent1ObsReferenceRangeObsRange.Add(oRelationShipComponent1ObsReferenceRangeObsRangeIntCode);
+            oRelationShipComponent1ObsReferenceRange.Add(oRelationShipComponent1ObsReferenceRangeObsRange);
+            oRelationShipComponent1Obs.Add(oRelationShipComponent1ObsReferenceRange);
+
+
+            oRelationShipComponent1.Add(oRelationShipComponent1Obs);
+            oRelationShipOrganizer.Add(oRelationShipComponent1);
+
+            ///////////////////fine component1
+
+
+            ///////////////////////////////////////////COMPONENT 2 //////////////////////////////////
+            XElement oRelationShipComponent2 = new XElement(ns + "component", "");
+            XElement oRelationShipComponent2Obs = new XElement(ns + "observation",
+                                  new XAttribute("classCode", "OBS"),
+                                  new XAttribute("moodCode", "EVN")
+                                  );
+
+            XElement oRelationShipComponent2ObsCode = new XElement(ns + "code",
+            new XAttribute("code", "622-1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Bacteria identified in Sputum by Aerobe culture")
+            );
+
+            XElement oRelationShipComponent2ObsCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.93.3"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "EC ESPETTORATO")
+            );
+
+            oRelationShipComponent2ObsCode.Add(oRelationShipComponent2ObsCodeTranslate);
+            oRelationShipComponent2Obs.Add(oRelationShipComponent2ObsCode);
+
+            XElement oRelationShipComponent2ObsStatusCode = new XElement(ns + "statusCode",
+                                                            new XAttribute("code", "completed"));
+
+            oRelationShipComponent2Obs.Add(oRelationShipComponent2ObsStatusCode);
+
+            XElement oRelationShipComponent2ObsEffeTime = new XElement(ns + "effectiveTime",
+                                            new XAttribute("value", "20220330112426+0100"));
+
+            oRelationShipComponent2Obs.Add(oRelationShipComponent2ObsEffeTime);
+
+            //TESTO CON NAMESPACE
+            XElement oRelationShipComponent2ObsValue = new XElement(ns + "value",
+                                 new XAttribute(xsi + "type", "ST"), "alcuni leucociti");
+
+            oRelationShipComponent2Obs.Add(oRelationShipComponent2ObsValue);
+
+            XElement oRelationShipComponent2ObsReferenceRange = new XElement(ns + "referenceRange",
+                                                                new XAttribute("typeCode", "REFV"));
+
+            XElement oRelationShipComponent2ObsReferenceRangeObsRange = new XElement(ns + "observationRange",
+                                                                        new XAttribute("classCode", "OBS"),
+                                                                        new XAttribute("moodCode", "EVN.CRT")
+                                                                        );
+
+            XElement oRelationShipComponent2ObsReferenceRangeObsRangeIntCode = new XElement(ns + "interpretationCode",
+            new XAttribute("code", "N"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.5.83"),
+            new XAttribute("codeSystemName", "ObservationInterpretation"),
+            new XAttribute("displayName", "N"));
+
+            oRelationShipComponent2ObsReferenceRangeObsRange.Add(oRelationShipComponent2ObsReferenceRangeObsRangeIntCode);
+            oRelationShipComponent2ObsReferenceRange.Add(oRelationShipComponent2ObsReferenceRangeObsRange);
+            oRelationShipComponent2Obs.Add(oRelationShipComponent2ObsReferenceRange);
+
+            oRelationShipComponent2.Add(oRelationShipComponent2Obs);
+            oRelationShipOrganizer.Add(oRelationShipComponent2);
+
+            ///////////////////fine component2
+
+            ///////////////////////////////////////////COMPONENT 3 //////////////////////////////////
+            XElement oRelationShipComponent3 = new XElement(ns + "component", "");
+            XElement oRelationShipComponent3Obs = new XElement(ns + "observation",
+                                  new XAttribute("classCode", "OBS"),
+                                  new XAttribute("moodCode", "EVN")
+                                  );
+
+            XElement oRelationShipComponent3ObsCode = new XElement(ns + "code",
+            new XAttribute("code", "622-1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Bacteria identified in Sputum by Aerobe culture")
+            );
+
+            XElement oRelationShipComponent3ObsCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.93.3"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "EC ESPETTORATO")
+            );
+
+            oRelationShipComponent3ObsCode.Add(oRelationShipComponent3ObsCodeTranslate);
+            oRelationShipComponent3Obs.Add(oRelationShipComponent3ObsCode);
+
+            XElement oRelationShipComponent3ObsStatusCode = new XElement(ns + "statusCode",
+                                                            new XAttribute("code", "completed"));
+
+            oRelationShipComponent3Obs.Add(oRelationShipComponent3ObsStatusCode);
+
+            XElement oRelationShipComponent3ObsEffeTime = new XElement(ns + "effectiveTime",
+                                            new XAttribute("value", "20220330112426+0100"));
+
+            oRelationShipComponent3Obs.Add(oRelationShipComponent3ObsEffeTime);
+
+            //TESTO CON NAMESPACE
+            XElement oRelationShipComponent3ObsValue = new XElement(ns + "value",
+                                 new XAttribute(xsi + "type", "ST"), "bacilli gram negativi");
+
+            oRelationShipComponent3Obs.Add(oRelationShipComponent3ObsValue);
+
+            XElement oRelationShipComponent3ObsReferenceRange = new XElement(ns + "referenceRange",
+                                                                new XAttribute("typeCode", "REFV"));
+
+            XElement oRelationShipComponent3ObsReferenceRangeObsRange = new XElement(ns + "observationRange",
+                                                                        new XAttribute("classCode", "OBS"),
+                                                                        new XAttribute("moodCode", "EVN.CRT")
+                                                                        );
+
+            XElement oRelationShipComponent3ObsReferenceRangeObsRangeIntCode = new XElement(ns + "interpretationCode",
+            new XAttribute("code", "N"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.5.83"),
+            new XAttribute("codeSystemName", "ObservationInterpretation"),
+            new XAttribute("displayName", "N"));
+
+            oRelationShipComponent3ObsReferenceRangeObsRange.Add(oRelationShipComponent3ObsReferenceRangeObsRangeIntCode);
+            oRelationShipComponent3ObsReferenceRange.Add(oRelationShipComponent3ObsReferenceRangeObsRange);
+            oRelationShipComponent3Obs.Add(oRelationShipComponent3ObsReferenceRange);
+
+            oRelationShipComponent3.Add(oRelationShipComponent3Obs);
+            oRelationShipOrganizer.Add(oRelationShipComponent3);
+
+            ///////////////////fine component3
+
+            ///////////////////////////////////////////COMPONENT 4 //////////////////////////////////
+            XElement oRelationShipComponent4 = new XElement(ns + "component", "");
+            XElement oRelationShipComponent4Obs = new XElement(ns + "observation",
+                                  new XAttribute("classCode", "OBS"),
+                                  new XAttribute("moodCode", "EVN")
+                                  );
+
+            XElement oRelationShipComponent4ObsCode = new XElement(ns + "code",
+            new XAttribute("code", "622-1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Bacteria identified in Sputum by Aerobe culture")
+            );
+
+            XElement oRelationShipComponent4ObsCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.93.3"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "EC ESPETTORATO")
+            );
+
+            oRelationShipComponent4ObsCode.Add(oRelationShipComponent4ObsCodeTranslate);
+            oRelationShipComponent4Obs.Add(oRelationShipComponent4ObsCode);
+
+            XElement oRelationShipComponent4ObsStatusCode = new XElement(ns + "statusCode",
+                                                new XAttribute("code", "completed"));
+
+            oRelationShipComponent4Obs.Add(oRelationShipComponent4ObsStatusCode);
+
+            XElement oRelationShipComponent4ObsEffeTime = new XElement(ns + "effectiveTime",
+                                            new XAttribute("value", "20220330112426+0100"));
+
+            oRelationShipComponent4Obs.Add(oRelationShipComponent4ObsEffeTime);
+
+            //TESTO CON NAMESPACE
+            XElement oRelationShipComponent4ObsValue = new XElement(ns + "value",
+                                 new XAttribute(xsi + "type", "ST"), "cocchi gram positivi");
+
+            oRelationShipComponent4Obs.Add(oRelationShipComponent4ObsValue);
+
+            XElement oRelationShipComponent4ObsReferenceRange = new XElement(ns + "referenceRange",
+                                                                new XAttribute("typeCode", "REFV"));
+
+            XElement oRelationShipComponent4ObsReferenceRangeObsRange = new XElement(ns + "observationRange",
+                                                                        new XAttribute("classCode", "OBS"),
+                                                                        new XAttribute("moodCode", "EVN.CRT")
+                                                                        );
+
+            XElement oRelationShipComponent4ObsReferenceRangeObsRangeIntCode = new XElement(ns + "interpretationCode",
+            new XAttribute("code", "N"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.5.83"),
+            new XAttribute("codeSystemName", "ObservationInterpretation"),
+            new XAttribute("displayName", "N"));
+
+            oRelationShipComponent4ObsReferenceRangeObsRange.Add(oRelationShipComponent4ObsReferenceRangeObsRangeIntCode);
+            oRelationShipComponent4ObsReferenceRange.Add(oRelationShipComponent4ObsReferenceRangeObsRange);
+            oRelationShipComponent4Obs.Add(oRelationShipComponent4ObsReferenceRange);
+
+            oRelationShipComponent4.Add(oRelationShipComponent4Obs);
+            oRelationShipOrganizer.Add(oRelationShipComponent4);
+
+            //////////////////////FINE  COMPONENT 4 //////////////////////////////////
+
+
+            /////////////////////////////component 5
+            XElement oRelationShipComponent5 = new XElement(ns + "component", "");
+            XElement oRelationShipComponent5Obs = new XElement(ns + "observation",
+                                  new XAttribute("classCode", "OBS"),
+                                  new XAttribute("moodCode", "EVN")
+                                  );
+
+            XElement oRelationShipComponent5ObsCode = new XElement(ns + "code",
+            new XAttribute("code", "622-1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Bacteria identified in Sputum by Aerobe culture")
+            );
+
+            oRelationShipComponent5Obs.Add(oRelationShipComponent5ObsCode);
+
+            XElement oRelationShipComponent5ObsCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.93.3"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "EC ESPETTORATO")
+            );
+
+            oRelationShipComponent5ObsCode.Add(oRelationShipComponent5ObsCodeTranslate);
+
+            XElement oRelationShipComponent5ObsStatusCode = new XElement(ns + "statusCode",
+                                                new XAttribute("code", "completed"));
+
+            oRelationShipComponent5Obs.Add(oRelationShipComponent5ObsStatusCode);
+
+            XElement oRelationShipComponent5ObsEffeTime = new XElement(ns + "effectiveTime",
+                                            new XAttribute("value", "20220330112426+0100"));
+
+            oRelationShipComponent5Obs.Add(oRelationShipComponent5ObsEffeTime);
+
+            XElement oRelationShipComponent5ObsValue = new XElement(ns + "value",
+                      new XAttribute(xsi + "type", "PQ"),
+                      new XAttribute("value", "100000.0"),
+                      new XAttribute("unit", "UFC/ml")
+                      );
+
+            oRelationShipComponent5Obs.Add(oRelationShipComponent5ObsValue);
+
+            XElement oRelationShipComponent5ObsReferenceRange = new XElement(ns + "referenceRange",
+                                                                new XAttribute("typeCode", "REFV"));
+
+            XElement oRelationShipComponent5ObsReferenceRangeObsRange = new XElement(ns + "observationRange",
+                                                                        new XAttribute("classCode", "OBS"),
+                                                                        new XAttribute("moodCode", "EVN.CRT")
+                                                                        );
+
+            XElement oRelationShipComponent5ObsReferenceRangeObsRangeIntCode = new XElement(ns + "interpretationCode",
+            new XAttribute("code", "N"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.5.83"),
+            new XAttribute("codeSystemName", "ObservationInterpretation"),
+            new XAttribute("displayName", "N"));
+
+            oRelationShipComponent5ObsReferenceRangeObsRange.Add(oRelationShipComponent5ObsReferenceRangeObsRangeIntCode);
+            oRelationShipComponent5ObsReferenceRange.Add(oRelationShipComponent5ObsReferenceRangeObsRange);
+            oRelationShipComponent5Obs.Add(oRelationShipComponent5ObsReferenceRange);
+
+            oRelationShipComponent5.Add(oRelationShipComponent5Obs);
+            oRelationShipOrganizer.Add(oRelationShipComponent5);
+
+            oRelationShip.Add(oRelationShipOrganizer);
+            oEntry1Act.Add(oRelationShip);
+            oEntry1.Add(oEntry1Act);
+            oComponentStructuredBodyComponentSectionComponentSection.Add(oEntry1);
+
+            ////////////////////////////ENTRY 2 //////////////////////////////////////////////////
+            XElement oEntry2 = new XElement(ns + "entry",
+                      new XAttribute("typeCode", "DRIV"));
+
+            XElement oEntry2Act = new XElement(ns + "act",
+            new XAttribute("classCode", "ACT"),
+            new XAttribute("moodCode", "EVN"));
+
+            XElement oEntry2ActCode = new XElement(ns + "code",
+            new XAttribute("code", "622-1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Bacteria identified in Sputum by Aerobe culture"));
+
+            oEntry2Act.Add(oEntry2ActCode);
+
+            XElement oEntry2ActTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.93.3"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "EC ESPETTORATO")
+            );
+
+            oEntry2ActCode.Add(oEntry2ActTranslate);
+
+            XElement oEntry2ActStatusCode = new XElement(ns + "statusCode",
+            new XAttribute("code", "completed"));
+
+            oEntry2Act.Add(oEntry2ActStatusCode);
+
+            XElement oEntry2ActEffTime = new XElement(ns + "effectiveTime",
+                                            new XAttribute("value", "20220330112426+0100"));
+
+            oEntry2Act.Add(oEntry2ActEffTime);
+
+            XElement oEntry2ActEntryRelShip = new XElement(ns + "entryRelationship",
+            new XAttribute("typeCode", "COMP"));
+
+            XElement oEntry2ActEntryRelShipOrganizer = new XElement(ns + "organizer",
+            new XAttribute("classCode", "CLUSTER"),
+            new XAttribute("moodCode", "EVN")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerCode = new XElement(ns + "code",
+            new XAttribute("code", "622-1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Bacteria identified in Sputum by Aerobe culture"));
+
+            XElement oEntry2ActEntryRelShipOrganizerCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.93.3"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "EC ESPETTORATO")
+            );
+
+            oEntry2ActEntryRelShipOrganizerCode.Add(oEntry2ActEntryRelShipOrganizerCodeTranslate);
+            oEntry2ActEntryRelShipOrganizer.Add(oEntry2ActEntryRelShipOrganizerCode);
+
+            XElement oEntry2ActEntryRelShipOrganizerStatusCode = new XElement(ns + "statusCode",
+                                                                 new XAttribute("code", "completed"));
+
+            oEntry2ActEntryRelShipOrganizer.Add(oEntry2ActEntryRelShipOrganizerStatusCode);
+
+            XElement oEntry2ActEntryRelShipOrganizerEffTime = new XElement(ns + "effectiveTime",
+                                new XAttribute("value", "20220330112426+0100"));
+
+            oEntry2ActEntryRelShipOrganizer.Add(oEntry2ActEntryRelShipOrganizerEffTime);
+
+            /////////////specimen
+            XElement oEntry2ActEntryRelShipOrganizerSpecimen = new XElement(ns + "specimen",
+                                new XAttribute("typeCode", "SPC"));
+
+            XElement oEntry2ActEntryRelShipOrganizerSpecimenRole = new XElement(ns + "specimenRole",
+                                new XAttribute("classCode", "SPEC"));
+
+            XElement oEntry2ActEntryRelShipOrganizerSpecimenRolePlayEnt = new XElement(ns + "specimenPlayingEntity",
+                                new XAttribute("classCode", "MIC"));
+
+            XElement oEntry2ActEntryRelShipOrganizerSpecimenRolePlayEntCode = new XElement(ns + "code",
+            new XAttribute("code", "STA"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.99"),
+            new XAttribute("codeSystemName", "SpecimenType"),
+            new XAttribute("displayName", "STAPHILOCOCCUS AUREUS")
+            );
+
+            oEntry2ActEntryRelShipOrganizerSpecimenRolePlayEnt.Add(oEntry2ActEntryRelShipOrganizerSpecimenRolePlayEntCode);
+            oEntry2ActEntryRelShipOrganizerSpecimenRole.Add(oEntry2ActEntryRelShipOrganizerSpecimenRolePlayEnt);
+
+            oEntry2ActEntryRelShipOrganizer.Add(oEntry2ActEntryRelShipOrganizerSpecimen);
+            oEntry2ActEntryRelShipOrganizerSpecimen.Add(oEntry2ActEntryRelShipOrganizerSpecimenRole);
+
+            //////////////fine speciment            
+
+            ////////////////Component principale
+
+            XElement oEntry2ActEntryRelShipOrganizerComponentPrincipale = new XElement(ns + "component", "");
+            XElement oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrganizer = new XElement(ns + "organizer",
+            new XAttribute("classCode", "BATTERY"),
+            new XAttribute("moodCode", "EVN")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrgCode = new XElement(ns + "code",
+            new XAttribute("code", "622-1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Bacteria identified in Sputum by Aerobe culture")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrgCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.93.3"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "EC ESPETTORATO")
+            );
+
+            oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrgCode.Add(oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrgCodeTranslate);
+            oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrganizer.Add(oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrgCode);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrgStatusCode = new XElement(ns + "statusCode",
+            new XAttribute("code", "completed")
+            );
+
+            oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrganizer.Add(oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrgStatusCode);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrgEffTime = new XElement(ns + "effectiveTime",
+            new XAttribute("value", "20220330112426+0100"));
+
+            oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrganizer.Add(oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrgEffTime);
+
+            ///////////////////////////////////////////primo component figlio
+            XElement oEntry2ActEntryRelShipOrganizerComponent2 = new XElement(ns + "component", "");
+            XElement oEntry2ActEntryRelShipOrganizerComponent2OBS = new XElement(ns + "observation",
+            new XAttribute("classCode", "OBS"),
+            new XAttribute("moodCode", "EVN")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent2OBSCode = new XElement(ns + "code",
+            new XAttribute("code", "622-1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Bacteria identified in Sputum by Aerobe culture")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent2OBSCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.93.3"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "EC ESPETTORATO")
+            );
+
+            oEntry2ActEntryRelShipOrganizerComponent2OBSCode.Add(oEntry2ActEntryRelShipOrganizerComponent2OBSCodeTranslate);
+            oEntry2ActEntryRelShipOrganizerComponent2OBS.Add(oEntry2ActEntryRelShipOrganizerComponent2OBSCode);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent2OBSStatusCode = new XElement(ns + "statusCode",
+            new XAttribute("code", "completed"));
+
+            oEntry2ActEntryRelShipOrganizerComponent2OBS.Add(oEntry2ActEntryRelShipOrganizerComponent2OBSStatusCode);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent2OBSEffTime = new XElement(ns + "effectiveTime",
+            new XAttribute("value", "20220330112426+0100"));
+
+            oEntry2ActEntryRelShipOrganizerComponent2OBS.Add(oEntry2ActEntryRelShipOrganizerComponent2OBSEffTime);
+
+            //TESTO CON NAMESPACE
+            XElement oEntry2ActEntryRelShipOrganizerComponent2OBSValue = new XElement(ns + "value",
+                                 new XAttribute(xsi + "type", "ST"), "STAPHILOCOCCUS AUREUS");
+
+            oEntry2ActEntryRelShipOrganizerComponent2OBS.Add(oEntry2ActEntryRelShipOrganizerComponent2OBSValue);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent2OBSMethCode = new XElement(ns + "methodCode",
+            new XAttribute("code", "0107"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.5.84"),
+            new XAttribute("codeSystemName", "HL7 ObservationMethod"),
+            new XAttribute("displayName", "MICROSCOPIA")
+            );
+
+            oEntry2ActEntryRelShipOrganizerComponent2OBS.Add(oEntry2ActEntryRelShipOrganizerComponent2OBSMethCode);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent2OBSRefRange = new XElement(ns + "referenceRange",
+            new XAttribute("typeCode", "REFV"));
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent2OBSObsRange = new XElement(ns + "observationRange",
+            new XAttribute("classCode", "OBS"),
+            new XAttribute("moodCode", "EVN.CRT")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent2OBSObsRangeIntCode = new XElement(ns + "interpretationCode",
+            new XAttribute("code", "N"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.5.83"),
+            new XAttribute("codeSystemName", "ObservationInterpretation"),
+            new XAttribute("displayName", "N")
+            );
+
+            oEntry2ActEntryRelShipOrganizerComponent2OBSObsRange.Add(oEntry2ActEntryRelShipOrganizerComponent2OBSObsRangeIntCode);
+            oEntry2ActEntryRelShipOrganizerComponent2OBSRefRange.Add(oEntry2ActEntryRelShipOrganizerComponent2OBSObsRange);
+            oEntry2ActEntryRelShipOrganizerComponent2OBS.Add(oEntry2ActEntryRelShipOrganizerComponent2OBSRefRange);
+
+
+
+            oEntry2ActEntryRelShipOrganizerComponent2.Add(oEntry2ActEntryRelShipOrganizerComponent2OBS);
+            oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrganizer.Add(oEntry2ActEntryRelShipOrganizerComponent2);
+
+            ///////////SECONDO COMPONENT FIGLIO
+            XElement oEntry2ActEntryRelShipOrganizerComponent3 = new XElement(ns + "component", "");
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent3Act = new XElement(ns + "act",
+            new XAttribute("classCode", "ACT"),
+            new XAttribute("moodCode", "EVN")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent3ActCode = new XElement(ns + "code",
+            new XAttribute("code", "393-9"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Penicillin G Susceptibility")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent3ActCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.01.1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "ANTIBIOGRAMMA PENICILLINA")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent3ActStatusCode = new XElement(ns + "statusCode",
+            new XAttribute("code", "completed"));
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent3ActEffTime = new XElement(ns + "effectiveTime",
+            new XAttribute("value", "20220330112426+0100"));
+
+
+            oEntry2ActEntryRelShipOrganizerComponent3ActCode.Add(oEntry2ActEntryRelShipOrganizerComponent3ActCodeTranslate);
+            oEntry2ActEntryRelShipOrganizerComponent3Act.Add(oEntry2ActEntryRelShipOrganizerComponent3ActCode);
+            oEntry2ActEntryRelShipOrganizerComponent3Act.Add(oEntry2ActEntryRelShipOrganizerComponent3ActStatusCode);
+            oEntry2ActEntryRelShipOrganizerComponent3Act.Add(oEntry2ActEntryRelShipOrganizerComponent3ActEffTime);
+            oEntry2ActEntryRelShipOrganizerComponent3.Add(oEntry2ActEntryRelShipOrganizerComponent3Act);
+
+            oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrganizer.Add(oEntry2ActEntryRelShipOrganizerComponent3);
+
+            ///////////TERZO COMPONENT FIGLIO (primo riproducibile)
+            XElement oEntry2ActEntryRelShipOrganizerComponent4 = new XElement(ns + "component", "");
+            XElement oEntry2ActEntryRelShipOrganizerComponent4OBS = new XElement(ns + "observation",
+            new XAttribute("classCode", "OBS"),
+            new XAttribute("moodCode", "EVN")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent4OBSCode = new XElement(ns + "code",
+            new XAttribute("code", "393-9"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Penicillin G Susceptibility")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent4OBSCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.01.1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "ANTIBIOGRAMMA PENICILLINA")
+            );
+
+            oEntry2ActEntryRelShipOrganizerComponent4OBSCode.Add(oEntry2ActEntryRelShipOrganizerComponent4OBSCodeTranslate);
+            oEntry2ActEntryRelShipOrganizerComponent4OBS.Add(oEntry2ActEntryRelShipOrganizerComponent4OBSCode);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent4OBSStatusCode = new XElement(ns + "statusCode",
+            new XAttribute("code", "completed"));
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent4OBSEffTime = new XElement(ns + "effectiveTime",
+            new XAttribute("value", "20220330112426+0100"));
+
+            //TESTO CON NAMESPACE
+            XElement oEntry2ActEntryRelShipOrganizerComponent4OBSValue = new XElement(ns + "value",
+                                                 new XAttribute(xsi + "type", "ST"), "RESISTENTE");
+
+            oEntry2ActEntryRelShipOrganizerComponent4OBS.Add(oEntry2ActEntryRelShipOrganizerComponent4OBSStatusCode);
+            oEntry2ActEntryRelShipOrganizerComponent4OBS.Add(oEntry2ActEntryRelShipOrganizerComponent4OBSEffTime);
+            oEntry2ActEntryRelShipOrganizerComponent4OBS.Add(oEntry2ActEntryRelShipOrganizerComponent4OBSValue);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent4OBSRefRange = new XElement(ns + "referenceRange",
+            new XAttribute("typeCode", "REFV"));
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent4OBSRange = new XElement(ns + "observationRange",
+            new XAttribute("classCode", "OBS"),
+            new XAttribute("moodCode", "EVN.CRT")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent4OBSRangeIntCode = new XElement(ns + "interpretationCode",
+            new XAttribute("code", "R"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.5.83"),
+            new XAttribute("codeSystemName", "ObservationInterpretation"),
+            new XAttribute("displayName", "R")
+            );
+
+            oEntry2ActEntryRelShipOrganizerComponent4OBSRange.Add(oEntry2ActEntryRelShipOrganizerComponent4OBSRangeIntCode);
+            oEntry2ActEntryRelShipOrganizerComponent4OBSRefRange.Add(oEntry2ActEntryRelShipOrganizerComponent4OBSRange);
+            oEntry2ActEntryRelShipOrganizerComponent4OBS.Add(oEntry2ActEntryRelShipOrganizerComponent4OBSRefRange);
+
+            oEntry2ActEntryRelShipOrganizerComponent4.Add(oEntry2ActEntryRelShipOrganizerComponent4OBS);
+            oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrganizer.Add(oEntry2ActEntryRelShipOrganizerComponent4);
+
+            ///////////QUARTO COMPONENT FIGLIO Riprodotto e modificato
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent5 = new XElement(ns + "component", "");
+            XElement oEntry2ActEntryRelShipOrganizerComponent5OBS = new XElement(ns + "observation",
+            new XAttribute("classCode", "OBS"),
+            new XAttribute("moodCode", "EVN")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent5OBSCode = new XElement(ns + "code",
+            new XAttribute("code", "393-9"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Penicillin G Susceptibility")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent5OBSCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.01.1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "ANTIBIOGRAMMA PENICILLINA")
+            );
+
+            oEntry2ActEntryRelShipOrganizerComponent5OBSCode.Add(oEntry2ActEntryRelShipOrganizerComponent5OBSCodeTranslate);
+            oEntry2ActEntryRelShipOrganizerComponent5OBS.Add(oEntry2ActEntryRelShipOrganizerComponent5OBSCode);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent5OBSStatusCode = new XElement(ns + "statusCode",
+            new XAttribute("code", "completed"));
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent5OBSEffTime = new XElement(ns + "effectiveTime",
+            new XAttribute("value", "20220330112426+0100"));
+
+            //TESTO CON NAMESPACE
+            XElement oEntry2ActEntryRelShipOrganizerComponent5OBSValue = new XElement(ns + "value",
+                                                 new XAttribute(xsi + "type", "ST"), ">= 0,5");
+
+            oEntry2ActEntryRelShipOrganizerComponent5OBS.Add(oEntry2ActEntryRelShipOrganizerComponent5OBSStatusCode);
+            oEntry2ActEntryRelShipOrganizerComponent5OBS.Add(oEntry2ActEntryRelShipOrganizerComponent5OBSEffTime);
+            oEntry2ActEntryRelShipOrganizerComponent5OBS.Add(oEntry2ActEntryRelShipOrganizerComponent5OBSValue);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent5OBSRefRange = new XElement(ns + "referenceRange",
+            new XAttribute("typeCode", "REFV"));
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent5OBSRange = new XElement(ns + "observationRange",
+            new XAttribute("classCode", "OBS"),
+            new XAttribute("moodCode", "EVN.CRT")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent5OBSRangeIntCode = new XElement(ns + "interpretationCode",
+            new XAttribute("code", "R"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.5.83"),
+            new XAttribute("codeSystemName", "ObservationInterpretation"),
+            new XAttribute("displayName", "R")
+            );
+
+            oEntry2ActEntryRelShipOrganizerComponent5OBSRange.Add(oEntry2ActEntryRelShipOrganizerComponent5OBSRangeIntCode);
+            oEntry2ActEntryRelShipOrganizerComponent5OBSRefRange.Add(oEntry2ActEntryRelShipOrganizerComponent5OBSRange);
+            oEntry2ActEntryRelShipOrganizerComponent5OBS.Add(oEntry2ActEntryRelShipOrganizerComponent5OBSRefRange);
+
+            oEntry2ActEntryRelShipOrganizerComponent5.Add(oEntry2ActEntryRelShipOrganizerComponent5OBS);
+            oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrganizer.Add(oEntry2ActEntryRelShipOrganizerComponent5);
+
+            ///////////QUINTO COMPONENT FIGLIO Riprodotto e modificato
+            XElement oEntry2ActEntryRelShipOrganizerComponent6 = new XElement(ns + "component", "");
+            XElement oEntry2ActEntryRelShipOrganizerComponent6OBS = new XElement(ns + "observation",
+            new XAttribute("classCode", "OBS"),
+            new XAttribute("moodCode", "EVN")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent6OBSCode = new XElement(ns + "code",
+            new XAttribute("code", "48767-8"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.6.1"),
+            new XAttribute("codeSystemName", "LOINC"),
+            new XAttribute("displayName", "Annotation comment Interpretation Narrative")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent6OBSCodeTranslate = new XElement(ns + "translation",
+            new XAttribute("code", "90.01.1"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.2.9.2.0.6.12"),
+            new XAttribute("codeSystemName", "Nomenclatore Nazionale"),
+            new XAttribute("codeSystemVersion", "1.0"),
+            new XAttribute("displayName", "NOTE ANTIBIOGRAMMA PENICILLINA")
+            );
+
+            oEntry2ActEntryRelShipOrganizerComponent6OBSCode.Add(oEntry2ActEntryRelShipOrganizerComponent6OBSCodeTranslate);
+            oEntry2ActEntryRelShipOrganizerComponent6OBS.Add(oEntry2ActEntryRelShipOrganizerComponent6OBSCode);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent6OBSStatusCode = new XElement(ns + "statusCode",
+            new XAttribute("code", "completed"));
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent6OBSEffTime = new XElement(ns + "effectiveTime",
+            new XAttribute("value", "20220330112426+0100"));
+
+            //TESTO CON NAMESPACE
+            XElement oEntry2ActEntryRelShipOrganizerComponent6OBSValue = new XElement(ns + "value",
+                                                 new XAttribute(xsi + "type", "ST"), "La MIC è espressa in mcg/ml");
+
+            oEntry2ActEntryRelShipOrganizerComponent6OBS.Add(oEntry2ActEntryRelShipOrganizerComponent6OBSStatusCode);
+            oEntry2ActEntryRelShipOrganizerComponent6OBS.Add(oEntry2ActEntryRelShipOrganizerComponent6OBSEffTime);
+            oEntry2ActEntryRelShipOrganizerComponent6OBS.Add(oEntry2ActEntryRelShipOrganizerComponent6OBSValue);
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent6OBSRefRange = new XElement(ns + "referenceRange",
+            new XAttribute("typeCode", "REFV"));
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent6OBSRange = new XElement(ns + "observationRange",
+            new XAttribute("classCode", "OBS"),
+            new XAttribute("moodCode", "EVN.CRT")
+            );
+
+            XElement oEntry2ActEntryRelShipOrganizerComponent6OBSRangeIntCode = new XElement(ns + "interpretationCode",
+            new XAttribute("code", "N"),
+            new XAttribute("codeSystem", "2.16.840.1.113883.5.83"),
+            new XAttribute("codeSystemName", "ObservationInterpretation"),
+            new XAttribute("displayName", "N")
+            );
+
+            oEntry2ActEntryRelShipOrganizerComponent6OBSRange.Add(oEntry2ActEntryRelShipOrganizerComponent6OBSRangeIntCode);
+            oEntry2ActEntryRelShipOrganizerComponent6OBSRefRange.Add(oEntry2ActEntryRelShipOrganizerComponent6OBSRange);
+            oEntry2ActEntryRelShipOrganizerComponent6OBS.Add(oEntry2ActEntryRelShipOrganizerComponent6OBSRefRange);
+
+            oEntry2ActEntryRelShipOrganizerComponent6.Add(oEntry2ActEntryRelShipOrganizerComponent6OBS);
+            oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrganizer.Add(oEntry2ActEntryRelShipOrganizerComponent6);
+
+            oEntry2ActEntryRelShipOrganizerComponentPrincipale.Add(oEntry2ActEntryRelShipOrganizerComponentPrincipaleOrganizer);
+
+            oEntry2ActEntryRelShipOrganizer.Add(oEntry2ActEntryRelShipOrganizerComponentPrincipale);
+
+            oEntry2ActEntryRelShip.Add(oEntry2ActEntryRelShipOrganizer);
+            oEntry2Act.Add(oEntry2ActEntryRelShip);
+            oEntry2.Add(oEntry2Act);
+            oComponentStructuredBodyComponentSectionComponentSection.Add(oEntry2);
+
+            oComponentStructuredBodyComponentSection.Add(oComponentStructuredBodyComponentSectionComponent);
+            oComponentStructuredBodyComponent.Add(oComponentStructuredBodyComponentSection);
+            oComponentStructuredBody.Add(oComponentStructuredBodyComponent);
+            oComponent.Add(oComponentStructuredBody);
+
+            aElement.Add(oComponent);
+
+            //aggiungo tutti gli elementi nella lista
+            for (int x = 0; x < aElement.Count; x++)
+            {
+                XElement oAdd = (XElement)aElement[x];
+                oXml.Element(oRoot.Name).Add(oAdd);
+            }
+
+            oXml.Save(cNomeFile);
+
+            string cRead = File.ReadAllText(cNomeFile);
+            XDocument xdoc = XDocument.Parse(cRead);
+            xdoc.Declaration = null;
+            string cNew = xdoc.ToString();
+
+            //rimuovo stringa {urn:hl7-org:v3}
+            cNew = cNew.Replace("xmlns=\"\">{urn:hl7-org:v3}", ">");
+
+            //rimuovo spazio fine tag
+            cNew = cNew.Replace(" />", "/>");
+
+            File.WriteAllText(cNomeFile, cNew);
+        }
